@@ -15,6 +15,7 @@ use App\Models\Post;
 
 
 
+
 class ProjectController extends Controller
 {
     /**
@@ -82,10 +83,12 @@ class ProjectController extends Controller
     public function update(UpdateProjectRequest $request, Project $project)
     {
         $formData = $request->validated();
+        $formData['slug'] = $project->slug;
         if ($project->title !== $formData['title']) {
             $slug = Post::getSlug($formData['title']);
+            $formData['slug'] = $slug;
         }
-        $formData['slug'] = $slug;
+
 
 
         $formData['user_id'] = $project->user_id;
@@ -98,7 +101,7 @@ class ProjectController extends Controller
         }
 
         $project->update($formData);
-        return redirect()->route('admin.projects.show', $project->id);
+        return redirect()->route('admin.projects.show', $project->slug);
     }
 
     /**
