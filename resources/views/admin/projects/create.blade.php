@@ -62,5 +62,8 @@
             <button type="reset">reset</button>
 
         </form>
+        <div class="mt-2">
+            <a href="{{ route('admin.projects.index') }}" class="btn btn-dark ">Torna ai progetti</a>
+        </div>
     </section>
 @endsection

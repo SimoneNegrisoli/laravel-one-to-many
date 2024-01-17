@@ -9,6 +9,9 @@
             </div>
         </div>
         <h3>{{ $project->title }}</h3>
+        <div>
+            <span class="">{{ $project->type ? $project->type->name : '' }}</span>
+        </div>
         <div><img src="{{ asset('storage/' . $project->image) }}" alt="{{ $project->title }}"></div>
         <p>{{ $project->body }}</p>
         <div>
