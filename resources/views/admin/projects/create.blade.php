@@ -4,12 +4,29 @@
         <h2>New Project</h2>
         <form action="{{ route('admin.projects.store') }}" enctype="multipart/form-data" method="POST">
             @csrf
+
+            {{-- TITLE --}}
             <div class="mb-3">
-                {{-- TITLE --}}
                 <label for="title">Titolo</label>
                 <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" id="title"
                     required maxlength="200" minlength="3" value="{{ old('title') }}">
                 @error('title')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+            {{-- TYPE --}}
+            <div class="mb-3">
+
+                <label for="type_id">Select Type</label>
+                <select class="form-control @error('type_id') is-invalid @enderror" name="type_id" id="type_id">
+                    <option value=""></option>
+                    @foreach ($types as $type)
+                        <option value="{{ $type->id }}" {{ old('type_id') == $type->id ? 'selected' : '' }}>
+                            {{ $type->name }}</option>
+                    @endforeach
+                </select>
+                @error('type_id')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
