@@ -10,7 +10,8 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Type;
-use App\Models\Post;
+
+
 
 
 
@@ -85,7 +86,7 @@ class ProjectController extends Controller
         $formData = $request->validated();
         $formData['slug'] = $project->slug;
         if ($project->title !== $formData['title']) {
-            $slug = Post::getSlug($formData['title']);
+            $slug = Project::getSlug($formData['title']);
             $formData['slug'] = $slug;
         }
 
